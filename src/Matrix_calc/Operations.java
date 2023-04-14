@@ -105,7 +105,7 @@ public class Operations {
         return arr;
     }
 
-    public static double[][] MatrixPow(double[][] a, int b) {
+    public static double[][] MatrixPow(double[][] a, double b) {
         double[][] c = a.clone();
         for (int i = 1; i < b; i++) {
             a = MatrixMultiplication(a, c);

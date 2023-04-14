@@ -96,7 +96,7 @@ class OperationsTest {
         double[][] arr1={{1,-2,0},
                          {3,4,2},
                          {-1,3,1}};
-        int k=4;
+        double k=4;
         double[][] arr={{-133,-178,-108},
                         {213,296,178},
                         {235,321,191}};
