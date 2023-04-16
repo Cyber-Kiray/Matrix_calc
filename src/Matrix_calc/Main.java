@@ -1,37 +1,76 @@
 package Matrix_calc;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import static Matrix_calc.Input_output.*;
 import static Matrix_calc.Operations.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner in = new Scanner(System.in);
-        int i = 0, v = 1;
+        int i = 0, v = 1,a,b,r,t,n,l=0;
         double[][] arr1 = new double[0][], arr2 = new double[0][], arr3 = new double[0][];
         double k = 0;
         System.out.println("Введите номер варианта ввода");
         System.out.println("1.Две матрицы");
         System.out.println("2.Матрица и число");
         System.out.println("3.Одна матрица");
-        int n = in.nextInt();
-        if (n == 1) {
-            System.out.println("Введите 1 матрицу");
-            arr1 = MatrixInput();
-            System.out.println("Введите 2 матрицу");
-            arr2 = MatrixInput();
-        } else if (n == 2) {
-            System.out.println("Введите матрицу");
-            arr1 = MatrixInput();
-            System.out.println("Введите число");
-            k = in.nextDouble();
-        } else if (n == 3) {
-            System.out.println("Введите матрицу");
-            arr1 = MatrixInput();
+        n = in.nextInt();
+        System.out.println("Введите тип ввода");
+        System.out.println("1.С клавиатуры");
+        System.out.println("2.Из файла");
+        t= in.nextInt();
+        if (t==1) {
+            if (n == 1) {
+                System.out.println("Введите 1 матрицу");
+                arr1 = MatrixInput();
+                System.out.println("Введите 2 матрицу");
+                arr2 = MatrixInput();
+            } else if (n == 2) {
+                System.out.println("Введите матрицу");
+                arr1 = MatrixInput();
+                System.out.println("Введите число");
+                k = in.nextDouble();
+            } else if (n == 3) {
+                System.out.println("Введите матрицу");
+                arr1 = MatrixInput();
+            }
+        } else if (t==2) {
+            if (n==1){
+                System.out.println("Ввод 1 матрицы");
+                System.out.println("Введите колличество строк");
+                a = in.nextInt();
+                System.out.println("Введите колличество столбцов");
+                b = in.nextInt();
+                arr1=MatrixInputFile(a,b,l);
+                System.out.println("Ввод 2 матрицы");
+                System.out.println("Введите колличество строк");
+                a = in.nextInt();
+                System.out.println("Введите колличество столбцов");
+                b = in.nextInt();
+                l=arr1.length+1;
+                arr2=MatrixInputFile(a,b,l);
+            } else if (n==2) {
+                System.out.println("Ввод матрицы");
+                System.out.println("Введите колличество строк");
+                a = in.nextInt();
+                System.out.println("Введите колличество столбцов");
+                b = in.nextInt();
+                arr1=MatrixInputFile(a,b,l);
+                l=arr1.length+1;
+                k=NumberInputFile(l);
+            } else if (n==3) {
+                System.out.println("Ввод матрицы");
+                System.out.println("Введите колличество строк");
+                a = in.nextInt();
+                System.out.println("Введите колличество столбцов");
+                b = in.nextInt();
+                arr1=MatrixInputFile(a,b,l);
+            }
         }
         while (v == 1) {
-            i=0;
+            i = 0;
             while (i == 0) {
                 System.out.println("Введите номер операции, которую хотите выполнить");
                 System.out.println("1.Сложение");
@@ -147,21 +186,21 @@ public class Main {
             System.out.println("1.Да");
             System.out.println("2.Нет");
             v = in.nextInt();
-            if (v==1){
-                arr1=arr3.clone();
+            if (v == 1) {
+                arr1 = arr3.clone();
                 System.out.println("С каким элементом желаете провести операцию?");
                 System.out.println("1.Матрица");
                 System.out.println("2.Число");
                 System.out.println("3.Та же самая матрица");
-                int a=in.nextInt();
-                if (a==1){
+                r = in.nextInt();
+                if (r == 1) {
                     System.out.println("Введите матрицу");
                     arr2 = MatrixInput();
-                } else if (a==2) {
+                } else if (r == 2) {
                     System.out.println("Введите число");
                     k = in.nextDouble();
-                } else if (a==3) {
-                    arr2=arr3.clone();
+                } else if (r== 3) {
+                    arr2 = arr3.clone();
                 }
             }
         }
