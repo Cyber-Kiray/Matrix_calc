@@ -2,6 +2,7 @@ package Matrix_calc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Locale;
@@ -55,5 +56,20 @@ public class Input_output {
         }
         double a=scanner.nextDouble();
         return a;
+    }
+    public static void MatrixPrintFile(double[][] arr) throws FileNotFoundException {
+        PrintWriter write=new PrintWriter("MatrixRes.txt");
+        for (int i=0;i<arr.length;i++){
+            for (int j=0;j<arr[0].length;j++){
+                write.print(arr[i][j]+" ");
+            }
+            write.println();
+        }
+        write.close();
+    }
+    public static void PrintFile(double a) throws FileNotFoundException {
+        PrintWriter write=new PrintWriter("MatrixRes.txt");
+        write.println(a);
+        write.close();
     }
 }

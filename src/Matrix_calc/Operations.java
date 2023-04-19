@@ -9,10 +9,11 @@ public class Operations {
                     "Mатрицы возможно сложить если они имеют одинаковую размерность");
             return null;
         }
+        double scale = Math.pow(10, 2);
         double[][] c = new double[a.length][a[0].length];
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a[0].length; j++) {
-                c[i][j] = a[i][j] + b[i][j];
+                c[i][j] =Math.round((a[i][j] + b[i][j])*scale)/scale;
             }
         }
         return c;
@@ -24,10 +25,11 @@ public class Operations {
                     "Mатрицы возможно вычесть если они имеют одинаковую размерность");
             return null;
         }
+        double scale = Math.pow(10, 2);
         double[][] c = new double[a.length][a[0].length];
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a[0].length; j++) {
-                c[i][j] = a[i][j] - b[i][j];
+                c[i][j] =Math.round((a[i][j] - b[i][j])*scale)/scale;
             }
         }
         return c;
@@ -40,11 +42,12 @@ public class Operations {
                     "равно количеству строк второй матрицы.Пожалуйста повторите ввод");
             return null;
         }
+        double scale = Math.pow(10, 2);
         double[][] arr = new double[a.length][b[0].length];
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < b[0].length; j++) {
                 for (int k = 0; k < a[0].length; k++) {
-                    arr[i][j] += a[i][k] * b[k][j];
+                    arr[i][j] = Math.round(a[i][k] * b[k][j]*scale)/scale;
                 }
             }
         }
@@ -52,10 +55,11 @@ public class Operations {
     }
 
     public static double[][] multiply(double a, double[][] b) {
+        double scale = Math.pow(10, 2);
         double[][] arr = new double[b.length][b[0].length];
         for (int i = 0; i < b.length; i++) {
             for (int j = 0; j < b[0].length; j++) {
-                arr[i][j] = a * b[i][j];
+                arr[i][j] =Math.round(a * b[i][j]*scale)/scale;
             }
         }
         return arr;
@@ -76,7 +80,7 @@ public class Operations {
             return arr[0][0];
         int size = arr.length;
         double[][] arr0 = new double[size - 1][size - 1];
-        double d = 0, k = 1;
+        double d = 0, k = 1,scale = Math.pow(10, 2);;
         int s = 0;
         for (int r = 0; r < size; r++) {
             int i = 0, j = 0;
@@ -112,4 +116,5 @@ public class Operations {
         }
         return a;
     }
+
 }

@@ -11,7 +11,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int i = 0, v = 1,a,b,r,t,n,l=0;
         double[][] arr1 = new double[0][], arr2 = new double[0][], arr3 = new double[0][];
-        double k = 0;
+        double k = 0,d = 0;
         System.out.println("Введите номер варианта ввода");
         System.out.println("1.Две матрицы");
         System.out.println("2.Матрица и число");
@@ -148,11 +148,11 @@ public class Main {
                     if (n == 0) {
                         i = 0;
                     } else if (n == 1) {
-                        double[][] arr = multiply(k, arr1);
-                        MatrixPrint(arr);
+                        arr3 = multiply(k, arr1);
+                        MatrixPrint(arr3);
                         i = 1;
                     } else if (n == 2) {
-                        double[][] arr = MatrixMultiplication(arr1, InverseMatrix(arr2));
+                        arr3 = MatrixMultiplication(arr1, InverseMatrix(arr2));
                         i = 1;
                     } else {
                         System.out.println("Данный пункт не найден, повторите ввод");
@@ -160,20 +160,20 @@ public class Main {
                     }
                 } else if (n == 5) {//транспонирование
 
-                    double[][] arr = transp(arr1);
-                    MatrixPrint(arr);
+                    arr3 = transp(arr1);
+                    MatrixPrint(arr3);
                     i = 1;
                 } else if (n == 6) {//определитель
-                    double d = det(arr1);
+                    d = det(arr1);
                     System.out.println(d);
                     i = 1;
                 } else if (n == 7) {//обратная матрица
-                    double[][] arr = InverseMatrix(arr1);
-                    MatrixPrint(arr);
+                    arr3 = InverseMatrix(arr1);
+                    MatrixPrint(arr3);
                     i = 1;
                 } else if (n == 8) {//возведение матрицы в степень
-                    double[][] arr = MatrixPow(arr1, k);
-                    MatrixPrint(arr);
+                    arr3 = MatrixPow(arr1, k);
+                    MatrixPrint(arr3);
                     i = 1;
                 } else if (n == 0) {
                     System.exit(0);
@@ -204,5 +204,11 @@ public class Main {
                 }
             }
         }
+        if (n==6){
+            PrintFile(d);
+        }else {
+            MatrixPrintFile(arr3);
+        }
+        System.out.println("Ответ записан в файл MatrixRes.txt");
     }
 }
