@@ -148,7 +148,7 @@ public class Main {
                     if (n == 0) {
                         i = 0;
                     } else if (n == 1) {
-                        arr3 = multiply(k, arr1);
+                        arr3 = multiply(1/k, arr1);
                         MatrixPrint(arr3);
                         i = 1;
                     } else if (n == 2) {
