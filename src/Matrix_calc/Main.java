@@ -153,6 +153,7 @@ public class Main {
                         i = 1;
                     } else if (n == 2) {
                         arr3 = MatrixMultiplication(arr1, InverseMatrix(arr2));
+                        MatrixPrint(arr3);
                         i = 1;
                     } else {
                         System.out.println("Данный пункт не найден, повторите ввод");

@@ -40,11 +40,12 @@ public class Operations {
                     "равно количеству строк второй матрицы.Пожалуйста повторите ввод");
             return null;
         }
+        double scale = Math.pow(10, 2);
         double[][] arr = new double[a.length][b[0].length];
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < b[0].length; j++) {
                 for (int k = 0; k < a[0].length; k++) {
-                    arr[i][j] +=a[i][k] * b[k][j];
+                    arr[i][j] +=Math.round(a[i][k] * b[k][j]*scale)/scale;
                 }
             }
         }
@@ -98,19 +99,52 @@ public class Operations {
         return d;
     }
 
-    public static double[][] InverseMatrix(double[][] a) {
-        double d = 1 / det(a);
-        double[][] arr1 = transp(a);
-        double[][] arr = multiply(d, arr1);
-        return arr;
-    }
-
     public static double[][] MatrixPow(double[][] a, double b) {
         double[][] c = a.clone();
         for (int i = 1; i < b; i++) {
             a = MatrixMultiplication(a, c);
         }
         return a;
+    }
+    public static double[][] InverseMatrix(double[][] a){
+        int i,j,k;
+        int size=a.length;
+        double[][] E = new double[size][size];
+        for (i=0;i<size;i++){
+            for (j=0;j<size;j++){
+                if (i==j) E[i][j]=1;
+                else E[i][j]=0;
+            }
+        }
+
+        for (k=0;k<size;k++){
+            for (j=k+1;j<size;j++){
+                a[k][j]=a[k][j]/a[k][k];
+            }
+            for (j=0;j<size;j++){
+                E[k][j]=E[k][j]/a[k][k];
+            }
+            a[k][k]=a[k][k]/a[k][k];
+            if (k>0) {
+                for (i=0;i<k;i++){
+                    for (j=0;j<size;j++){
+                        E[i][j]=E[i][j]-E[k][j]*a[i][k];
+                    }
+                    for (j=size-1;j>=k;j--){
+                        a[i][j]=a[i][j]-a[k][j]*a[i][k];
+                    }
+                }
+            }
+            for (i=k+1;i<size;i++){   //строки, находящиеся ниже k-ой
+                for (j=0;j<size;j++){
+                    E[i][j]=E[i][j]-E[k][j]*a[i][k];
+                }
+                for (j=size-1;j>=k;j--){
+                   a[i][j]=a[i][j]-a[k][j]*a[i][k];
+                }
+            }
+        }
+        return E;
     }
 
 }
