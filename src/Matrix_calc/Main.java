@@ -9,9 +9,9 @@ import static Matrix_calc.Operations.*;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner in = new Scanner(System.in);
-        int i = 0, v = 1,a,b,r,t,n,l=0;
+        int v = 1, a, b, r, t, n, w, i = 0, l = 0;
         double[][] arr1 = new double[0][], arr2 = new double[0][], arr3 = new double[0][];
-        double k = 0,d = 0;
+        double k = 0, d = 0;
         System.out.println("Введите номер варианта ввода");
         System.out.println("1.Две матрицы");
         System.out.println("2.Матрица и число");
@@ -20,8 +20,8 @@ public class Main {
         System.out.println("Введите тип ввода");
         System.out.println("1.С клавиатуры");
         System.out.println("2.Из файла");
-        t= in.nextInt();
-        if (t==1) {
+        t = in.nextInt();
+        if (t == 1) {
             if (n == 1) {
                 System.out.println("Введите 1 матрицу");
                 arr1 = MatrixInput();
@@ -36,37 +36,37 @@ public class Main {
                 System.out.println("Введите матрицу");
                 arr1 = MatrixInput();
             }
-        } else if (t==2) {
-            if (n==1){
+        } else if (t == 2) {
+            if (n == 1) {
                 System.out.println("Ввод 1 матрицы");
                 System.out.println("Введите колличество строк");
                 a = in.nextInt();
                 System.out.println("Введите колличество столбцов");
                 b = in.nextInt();
-                arr1=MatrixInputFile(a,b,l);
+                arr1 = MatrixInputFile(a, b, l);
                 System.out.println("Ввод 2 матрицы");
                 System.out.println("Введите колличество строк");
                 a = in.nextInt();
                 System.out.println("Введите колличество столбцов");
                 b = in.nextInt();
-                l=arr1.length+1;
-                arr2=MatrixInputFile(a,b,l);
-            } else if (n==2) {
+                l = arr1.length + 1;
+                arr2 = MatrixInputFile(a, b, l);
+            } else if (n == 2) {
                 System.out.println("Ввод матрицы");
                 System.out.println("Введите колличество строк");
                 a = in.nextInt();
                 System.out.println("Введите колличество столбцов");
                 b = in.nextInt();
-                arr1=MatrixInputFile(a,b,l);
-                l=arr1.length+1;
-                k=NumberInputFile(l);
-            } else if (n==3) {
+                arr1 = MatrixInputFile(a, b, l);
+                l = arr1.length + 1;
+                k = NumberInputFile(l);
+            } else if (n == 3) {
                 System.out.println("Ввод матрицы");
                 System.out.println("Введите колличество строк");
                 a = in.nextInt();
                 System.out.println("Введите колличество столбцов");
                 b = in.nextInt();
-                arr1=MatrixInputFile(a,b,l);
+                arr1 = MatrixInputFile(a, b, l);
             }
         }
         while (v == 1) {
@@ -148,7 +148,7 @@ public class Main {
                     if (n == 0) {
                         i = 0;
                     } else if (n == 1) {
-                        arr3 = multiply(1/k, arr1);
+                        arr3 = multiply(1 / k, arr1);
                         MatrixPrint(arr3);
                         i = 1;
                     } else if (n == 2) {
@@ -166,16 +166,22 @@ public class Main {
                     i = 1;
                 } else if (n == 6) {//определитель
                     d = det(arr1);
-                    System.out.println(d);
-                    i = 1;
+                    if (d == 0) i = 0;
+                    else {
+                        System.out.println(d);
+                        i = 1;
+                    }
                 } else if (n == 7) {//обратная матрица
                     arr3 = InverseMatrix(arr1);
                     MatrixPrint(arr3);
                     i = 1;
                 } else if (n == 8) {//возведение матрицы в степень
                     arr3 = MatrixPow(arr1, k);
-                    MatrixPrint(arr3);
-                    i = 1;
+                    if (arr3 == null) i = 0;
+                    else {
+                        MatrixPrint(arr3);
+                        i = 1;
+                    }
                 } else if (n == 0) {
                     System.exit(0);
                 } else {
@@ -200,16 +206,23 @@ public class Main {
                 } else if (r == 2) {
                     System.out.println("Введите число");
                     k = in.nextDouble();
-                } else if (r== 3) {
+                } else if (r == 3) {
                     arr2 = arr3.clone();
                 }
             }
         }
-        if (n==6){
-            PrintFile(d);
-        }else {
-            MatrixPrintFile(arr3);
+        System.out.println("Желаете записать ответ в файл?");
+        System.out.println("1.Да");
+        System.out.println("2.Нет");
+        w = in.nextInt();
+        if (w == 1) {
+            if (n == 6) {
+                PrintFile(d);
+            } else {
+                MatrixPrintFile(arr3);
+            }
+            System.out.println("Ответ записан в файл MatrixRes.txt");
         }
-        System.out.println("Ответ записан в файл MatrixRes.txt");
+        System.out.println("Работа программы завершена!");
     }
 }

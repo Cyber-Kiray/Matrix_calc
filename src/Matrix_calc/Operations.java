@@ -53,10 +53,11 @@ public class Operations {
     }
 
     public static double[][] multiply(double a, double[][] b) {
+        double scale = Math.pow(10, 2);
         double[][] arr = new double[b.length][b[0].length];
         for (int i = 0; i < b.length; i++) {
             for (int j = 0; j < b[0].length; j++) {
-                arr[i][j] =a * b[i][j];
+                arr[i][j] =Math.round(a * b[i][j]*scale)/scale;
             }
         }
         return arr;
@@ -73,19 +74,22 @@ public class Operations {
     }
 
     public static double det(double arr[][]) {
+        if(arr.length!=arr[0].length){
+            System.out.println("Найти определитель невозможно!\n" +
+                    "Для нахождения определителя матрицы, она должна быть квадратной.");
+            return 0;
+        }
         if (arr.length == 1)
             return arr[0][0];
         int size = arr.length;
         double[][] arr0 = new double[size - 1][size - 1];
         double d = 0, k = 1;
-        int s = 0;
         for (int r = 0; r < size; r++) {
             int i = 0, j = 0;
             for (int row = 0; row < size; row++) {
                 for (int col = 0; col < size; col++) {
                     if (row != 0 && col != r) {
                         arr0[i][j++] = arr[row][col];
-
                         if (j == size - 1) {
                             j = 0;
                             i++;
@@ -135,7 +139,7 @@ public class Operations {
                     }
                 }
             }
-            for (i=k+1;i<size;i++){   //строки, находящиеся ниже k-ой
+            for (i=k+1;i<size;i++){
                 for (j=0;j<size;j++){
                     E[i][j]=E[i][j]-E[k][j]*a[i][k];
                 }
